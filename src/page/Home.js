@@ -14,7 +14,7 @@ function Home(props) {
   let [keyword, setKeyword] = useState("");
   let { data, update, loading, fetchMore } = useAutoQuery(
     shops,
-    { status: params.get("status") || 0, keyword, page_size: 6 },
+    { status: params.get("status") || 0, keyword, page_size: 20 },
     {
       updateQuery: (pData, cData, params) => {
         let pList = pData.list || [];

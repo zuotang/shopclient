@@ -9,17 +9,17 @@ const styles = {
   entering: {
     position: "absolute",
     opacity: 0,
-    transform: "scale(1.1,1.1)",
+    transform: "translateY(100px)",
   },
   entered: {
     transition: `opacity ${timeout}ms ease-in-out,transform ${timeout}ms ease-in-out`,
     opacity: 1,
-    transform: "scale(1,1)",
+    transform: "translateY(0px)",
   },
   exiting: {
     transition: `opacity ${timeout}ms ease-in-out,transform ${timeout}ms ease-in-out`,
     opacity: 0,
-    transform: "scale(1.1,1.1)",
+    transform: "translateY(100px)",
   },
 };
 let pPathName = "";
