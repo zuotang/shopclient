@@ -1,30 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 import { Box, Spinner } from "gestalt";
 import { Switch, Route, Link } from "react-router-dom";
 import Header from "../components/Header";
 import System from "../page/system/System";
 import ShopDetail from "../page/ShopDetail";
-import Home from "../page/Home";
-import useUserInfo from "../hooks/useUserInfo";
-import { UserContext } from "../components/UserContext";
+import Home from "../page/Home"; 
 import Transition from "../components/Transition";
-
+import { useAutoQuery } from "../uitls/query";
+import {webCtx} from '../components/WebContext';
+import {getWebConfig} from '../api'
 function IndexPage(props) {
-  // let userData = useUserInfo(props.history.push);
-  // if (!userData.id) {
-  //   return (
-  //     <Box paddingY={12}>
-  //       <Spinner show={true} accessibilityLabel="获取用户数据" />
-  //     </Box>
-  //   );
-  // }
+  let {data,loading}=useAutoQuery(getWebConfig);
   return (
-    <Transition {...props}>
-      <Switch location={props.location}>
-        <Route path="/shop/:id" component={ShopDetail} />
-        <Route path="/" component={Home} />
-      </Switch>
-    </Transition>
+    <webCtx.Provider value={data} >
+      <Transition {...props}>
+        <Switch location={props.location}>
+          <Route path="/shop/:id" component={ShopDetail} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </Transition>
+    </webCtx.Provider>
   );
 }
 

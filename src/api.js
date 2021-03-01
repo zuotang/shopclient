@@ -1,5 +1,5 @@
 import axios from "./uitls/http";
-export const baseUrl = process.env.NODE_ENV == "development" ? "http://192.168.50.186:3001" : "";
+export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost:80" : "";
 //登录
 export async function signin(params) {
   let { data } = await axios.post(baseUrl + "/user/signin", { ...params });
@@ -19,5 +19,10 @@ export async function shops(params) {
 
 export async function shop({ id }) {
   let { data } = await axios.get(baseUrl + "/shop/shop/" + id);
+  return data.data;
+}
+
+export async function getWebConfig() {
+  let { data } = await axios.get(baseUrl + "/web/config/" );
   return data.data;
 }

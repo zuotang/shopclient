@@ -30,7 +30,7 @@ function ShopDetail(props) {
               </Box>
               <Box marginTop={5}>
                 <Text color="white" weight="bold">
-                  NIKE
+                  {data.brand}
                 </Text>
               </Box>
               <Box>
@@ -57,7 +57,7 @@ function ShopDetail(props) {
     setIsOpen(false);
     props.history.goBack();
   }
-
+  //return <Box color="darkGray" minHeight="100%">test</Box>
   return (
     <Box color="darkGray" minHeight="100%">
       <PhotoSlider images={items} visible={isOpen} onClose={handleClose} maskClosable={false} index={index} onIndexChange={setIndex} />

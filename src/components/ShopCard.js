@@ -11,7 +11,7 @@ function ShopCard({ data, proxy }) {
           <Image alt="example.com" naturalHeight={564} naturalWidth={564} src={getImgSrc(data.photo[0]?.url)} />
         </Box>
         <Box marginTop={5}>
-          <Text weight="bold">NIKE</Text>
+          <Text weight="bold">{data.brand}</Text>
         </Box>
         <Box>
           <Text truncate>{proxy ? data.proxy_name : data.name}</Text>

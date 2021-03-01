@@ -7,6 +7,8 @@ import { shops } from "../api";
 
 import { useScrollBottom, useResetScroll } from "../hooks/usePage";
 
+import Header from '../components/Header'
+
 //存入pageList
 let pData = null;
 function Home(props) {
@@ -32,17 +34,20 @@ function Home(props) {
   }, [page, total_page, loading]);
   useResetScroll("home");
   return (
-    <Box padding={1} color="lightGray" minHeight="110%" display="flex" direction="column" alignItems="center">
-      <Box display="flex" wrap maxWidth="100%" width="1200px">
-        {list?.map((item) => (
-          <Box key={item.id} column={6} smColumn={6} mdColumn={3} mdColumn={2}>
-            <Box margin={1}>
-              <ShopCard data={item} proxy={params.get("proxy") == 1} />
+    <Box minHeight="110vh"  color="lightGray">
+      <Header />
+      <Box padding={1}   display="flex" direction="column" alignItems="center">
+        <Box display="flex" wrap maxWidth="100%" width="1200px">
+          {list?.map((item) => (
+            <Box key={item.id} column={6} smColumn={6} mdColumn={3} mdColumn={2}>
+              <Box margin={1}>
+                <ShopCard data={item} proxy={params.get("proxy") == 1} />
+              </Box>
             </Box>
-          </Box>
-        ))}
+          ))}
+        </Box>
+        <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
       </Box>
-      <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
     </Box>
   );
 }
