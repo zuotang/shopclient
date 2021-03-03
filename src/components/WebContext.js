@@ -1,3 +1,2 @@
-import React,{createContext} from 'react'
-
-export const webCtx= createContext()
+import React, { createContext } from "react";
+export const WebCtx = createContext();
