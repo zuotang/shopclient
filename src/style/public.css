@@ -16,15 +16,14 @@ body {
   user-select: none;
 }
 
-
-html,
+/* html,
 body,
 body #root,
 body #root > div,
 body #root > div > div {
   height: 100%;
   width: 100%;
-}
+} */
 a {
   text-decoration: none;
 }
@@ -33,9 +32,8 @@ a {
   color: var(--g-colorRed100);
 }
 
-
-.page-exit{
-  transition: transform 0.3s,opacity 0.3s;
+.page-exit {
+  transition: transform 0.3s, opacity 0.3s;
   transform: translateY(0px);
   background-color: red;
   opacity: 1;
@@ -43,31 +41,25 @@ a {
   z-index: 999;
   top: 0;
 }
-.page-exit-active{
+.page-exit-active {
   transform: translateY(100px);
   opacity: 0;
-
 }
-.page-exit-done{
-
+.page-exit-done {
 }
 
-
-.page-enter{
-  transition: transform 0.3s ,opacity 0.3s;
+.page-enter {
+  transition: transform 0.3s, opacity 0.3s;
   transform: translateY(100px);
   opacity: 0;
   transition-delay: 0.3s;
   position: absolute;
   top: 0;
 }
-.page-enter-active{
-
+.page-enter-active {
   transform: translateY(0px);
   opacity: 1;
 }
 
-.page-enter-done{
-
+.page-enter-done {
 }
-

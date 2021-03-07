@@ -55,7 +55,9 @@ function ShopDetail(props) {
 
   function handleClose() {
     setIsOpen(false);
-    props.history.goBack();
+    setTimeout(() => {
+      props.history.goBack();
+    }, 300);
   }
   //return <Box color="darkGray" minHeight="100%">test</Box>
   return (

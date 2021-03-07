@@ -32,21 +32,28 @@ export function useScrollBottom(callback, params) {
   }, params);
 }
 
-export function useResetScroll(path) {
+let scrolls = {};
+export function useResetScroll(path, active) {
+  console.log(path, active);
   useEffect(() => {
     let key = `pageScroll_${path}`;
-    let pTop = localStorage.getItem(key);
-    if (pTop) {
+    let pTop = scrolls[key + "_s"];
+    let pHeight = scrolls[key + "_h"];
+    if (pTop && active == "POP") {
+      document.body.style.minHeight = pHeight + "px";
       setTop(pTop);
     }
     let pageScroll = 0;
+    let pageHeight = 0;
     function handleScroll() {
       pageScroll = getTop();
+      pageHeight = document.body.offsetHeight;
+      scrolls[key + "_s"] = pageScroll;
+      scrolls[key + "_h"] = pageHeight;
     }
     document.addEventListener("scroll", handleScroll);
     return () => {
       document.removeEventListener("scroll", handleScroll);
-      localStorage.setItem(key, pageScroll);
     };
   }, []);
 }

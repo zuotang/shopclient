@@ -7,12 +7,13 @@ import { shops } from "../api";
 
 import { useScrollBottom, useResetScroll } from "../hooks/usePage";
 
-import Header from '../components/Header'
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 //存入pageList
 let pData = null;
-function Home(props) {
-  let params = new URLSearchParams(props.location.search);
+function Home({ location, history }) {
+  let params = new URLSearchParams(location.search);
   let [keyword, setKeyword] = useState("");
   let { data, update, loading, fetchMore } = useAutoQuery(
     shops,
@@ -32,11 +33,12 @@ function Home(props) {
       fetchMore({ page: page ? page + 1 : 1 });
     }
   }, [page, total_page, loading]);
-  useResetScroll("home");
+  useResetScroll(location.pathname, history.action);
+
   return (
-    <Box minHeight="110vh"  color="lightGray">
+    <Box minHeight="105vh" color="lightGray">
       <Header />
-      <Box padding={1}   display="flex" direction="column" alignItems="center">
+      <Box padding={1} display="flex" direction="column" alignItems="center" minHeight="85vh">
         <Box display="flex" wrap maxWidth="100%" width="1200px">
           {list?.map((item) => (
             <Box key={item.id} column={6} smColumn={6} mdColumn={3} mdColumn={2}>
@@ -48,6 +50,7 @@ function Home(props) {
         </Box>
         <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
       </Box>
+      <Footer />
     </Box>
   );
 }

@@ -16,21 +16,23 @@ const HeaderBox = styled.div`
 function Header({ history }) {
   const [value, setValue] = React.useState("");
   let web = useContext(WebCtx);
-
+  let { Portal } = usePortal();
   return (
     <Box height={80}>
-      <HeaderBox color="white" width={"100%"}>
-        <Box display="flex" alignItems="center">
-          <Box padding={3}>
-            <img src={getImgSrc(web.logo)} width={35} height={35} />
+      <Portal>
+        <HeaderBox color="white" width={"100%"}>
+          <Box display="flex" alignItems="center">
+            <Box padding={3}>
+              <img src={getImgSrc(web.logo)} width={35} height={35} />
+            </Box>
+            <Box padding={2}>
+              <Heading color="red" size="sm">
+                {web.title}
+              </Heading>
+            </Box>
           </Box>
-          <Box padding={2}>
-            <Heading color="red" size="sm">
-              {web.title}
-            </Heading>
-          </Box>
-        </Box>
-      </HeaderBox>
+        </HeaderBox>
+      </Portal>
     </Box>
   );
 }
