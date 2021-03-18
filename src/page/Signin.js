@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, TextField, Callout, Button, Spinner } from "gestalt";
+import { Box, Heading, TextField, Callout, Button, Spinner, IconButton } from "gestalt";
 import { useQuery } from "../uitls/query";
 import { signin } from "../api";
 import { useForm } from "react-hook-form";
@@ -17,12 +17,21 @@ function Signin({ history }) {
   };
 
   return (
-    <Box display="flex" justifyContent="center" height="100%">
+    <Box display="flex" justifyContent="center" height="100vh">
       <Box borderStyle="sm" display="flex" margin="auto" marginTop="auto" wrap width="100%" direction="column" maxWidth={800}>
         <Box flex="grow" paddingX={3} paddingY={3}>
-          <Heading size="sm" accessibilityLevel={2}>
-            登录后台管理系统
-          </Heading>
+          <Box flex="grow" display="flex" alignItems="center" paddingX={3} paddingY={3}>
+            <IconButton
+              icon="arrow-back"
+              iconColor="red"
+              onClick={(e) => {
+                history.goBack();
+              }}
+            />
+            <Heading size="sm" accessibilityLevel={2}>
+              用户登录
+            </Heading>
+          </Box>
         </Box>
         <Box paddingX={1} paddingY={1}>
           {error && <Callout type="error" iconAccessibilityLabel="Error icon" message={error} />}

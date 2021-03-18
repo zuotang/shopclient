@@ -1,9 +1,19 @@
 import axios from "./uitls/http";
-export const baseUrl = process.env.NODE_ENV == "development" ? "http://shop.yfyundong.com" : "";
+export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost" : "";
 //登录
 export async function signin(params) {
   let { data } = await axios.post(baseUrl + "/user/signin", { ...params });
   return data.data;
+}
+
+export async function signup(params) {
+  let { data } = await axios.post(baseUrl + "/user/signup", { ...params });
+  return data.data;
+}
+
+export async function usecode(params) {
+  let { data } = await axios.post(baseUrl + "/user/usecode", { ...params });
+  return data;
 }
 
 //获取用户消息
