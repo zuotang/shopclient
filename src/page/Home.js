@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Box, Spinner, Button } from "gestalt";
 import Header from "../components/Header";
+import { WebCtx } from "../components/WebContext";
 
 function Home({ location, history }) {
   let params = new URLSearchParams(location.search);
+  let web = useContext(WebCtx);
   return (
     <Box minHeight="105vh" color="lightGray">
       <Header />
@@ -16,12 +18,16 @@ function Home({ location, history }) {
             }}
             color="red"
           />
-          <Box marginTop={2}>
-            <Button text="Google浏览器插件下载" href="/static/huke-谷歌插件【下载后解压】.zip" target="blank" role={"link"} />
-          </Box>
-          <Box marginTop={2}>
-            <Button text="360浏览器插件下载" href="/static/360插件.zip" target="blank" role={"link"} />
-          </Box>
+          {web["googlelink"] && (
+            <Box marginTop={2}>
+              <Button text={"Google浏览器插件下载"} href={web["googlelink"]} target="blank" role={"link"} />
+            </Box>
+          )}
+          {web["360link"] && (
+            <Box marginTop={2}>
+              <Button text="360浏览器插件下载" href={web["360link"]} target="blank" role={"link"} />
+            </Box>
+          )}
           <Box marginTop={2}>
             <Button
               text="续期激活"

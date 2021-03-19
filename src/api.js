@@ -1,14 +1,14 @@
 import axios from "./uitls/http";
-export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost" : "";
+export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost" : ""; //http://www.storm-money.com
 //登录
 export async function signin(params) {
   let { data } = await axios.post(baseUrl + "/user/signin", { ...params });
-  return data.data;
+  return data;
 }
 
 export async function signup(params) {
   let { data } = await axios.post(baseUrl + "/user/signup", { ...params });
-  return data.data;
+  return data;
 }
 
 export async function usecode(params) {

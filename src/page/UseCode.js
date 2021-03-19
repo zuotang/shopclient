@@ -8,13 +8,12 @@ import FormItem from "../components/FormItem";
 function Signup({ history }) {
   let { fetch, error, loading } = useQuery(usecode, null, {
     onSuccess: (msg, res) => {
-      console.log(res);
       let data = res;
       if (data.status != 0) {
         alert(data.message);
         return;
       }
-      history.push(`/message?title=${data.message}&content=请到插件登录...`);
+      history.push(`/message?title=${encodeURI(data.message)}&content=${encodeURI("请到插件登录...")}`);
     },
   });
   const { register, handleSubmit, errors } = useForm();
