@@ -28,6 +28,24 @@ function Home({ location, history }) {
               <Button text="360浏览器插件下载" href={web["360link"]} target="blank" role={"link"} />
             </Box>
           )}
+
+          <Box marginTop={2}>
+            <Button
+              text="用户信息"
+              onClick={(e) => {
+                history.push("/userinfo");
+              }}
+            />
+          </Box>
+          <Box marginTop={2}>
+            <Button
+              text="修改密码"
+              onClick={(e) => {
+                history.push("/setpassword");
+              }}
+            />
+          </Box>
+
           <Box marginTop={2}>
             <Button
               text="续期激活"

@@ -1,5 +1,5 @@
 import axios from "./uitls/http";
-export const baseUrl = process.env.NODE_ENV == "development" ? "http://localhost" : ""; //http://www.storm-money.com
+export const baseUrl = process.env.NODE_ENV == "development" ? "/api" : ""; //http://www.storm-money.com
 //登录
 export async function signin(params) {
   let { data } = await axios.post(baseUrl + "/user/signin", { ...params });
@@ -33,6 +33,11 @@ export async function shop({ id }) {
 }
 
 export async function getWebConfig() {
-  let { data } = await axios.get(baseUrl + "/web/config/");
+  let { data } = await axios.get(baseUrl + "/web/config");
   return data.data;
+}
+
+export async function setPassword(params) {
+  let { data } = await axios.post(baseUrl + "/user/setpassword", { ...params });
+  return data;
 }
