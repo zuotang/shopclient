@@ -8,7 +8,7 @@ function useUserInfo(push) {
       push("/signin");
     },
     onSuccess(msg, data) {
-      if (data.role !== "admin") {
+      if (!data.name) {
         push("/signin");
       }
     },

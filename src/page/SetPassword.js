@@ -33,7 +33,7 @@ function SetPassword({ history }) {
             }}
           />
           <Heading size="sm" accessibilityLevel={2}>
-            修改密码
+            找回密码
           </Heading>
         </Box>
         <Box paddingX={1} paddingY={1}>
@@ -41,7 +41,7 @@ function SetPassword({ history }) {
         </Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="code" label="邀请码" placeholder="请输入邀请码" ref={register} />
+            <FormItem com={TextField} name="code" label="兑换码" placeholder="请输入兑换码" ref={register} />
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
             <FormItem com={TextField} name="name" label="账号" placeholder="请输入账号" ref={register} />

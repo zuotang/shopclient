@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Box, Spinner, Button } from "gestalt";
 import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
+import banner from "../banner.png";
 
 function Home({ location, history }) {
   let params = new URLSearchParams(location.search);
@@ -10,7 +11,7 @@ function Home({ location, history }) {
     <Box minHeight="105vh" color="lightGray">
       <Header />
       <Box padding={1} display="flex" direction="column" alignItems="center" minHeight="85vh">
-        <Box maxWidth="800px" marginTop={6}>
+        <Box maxWidth="800px" width="100%" marginTop={6}>
           <Button
             text="新用户注册"
             onClick={(e) => {
@@ -39,21 +40,24 @@ function Home({ location, history }) {
           </Box>
           <Box marginTop={2}>
             <Button
-              text="修改密码"
+              text="找回密码"
               onClick={(e) => {
                 history.push("/setpassword");
               }}
             />
           </Box>
-
-          <Box marginTop={2}>
+          <Box height="168px"></Box>
+          <Box maxWidth="368px" width="100%" marginStart="auto" marginEnd="auto">
+            <img src={banner} width="100%" />
+          </Box>
+          {/* <Box marginTop={2}>
             <Button
               text="续期激活"
               onClick={(e) => {
                 history.push("/usecode");
               }}
             />
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>
