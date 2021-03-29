@@ -15,7 +15,7 @@ function handleOption(opt) {
   return newList;
 }
 
-function useBaseFetch(ql, { defaultData }) {
+function useBaseFetch(ql, { defaultData } = {}) {
   let [data, setData] = useState(defaultData || {});
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState(null);
@@ -72,7 +72,7 @@ export function useQuery(ql, params, options) {
 
 export function useAutoQuery(ql, params = {}, options = {}) {
   let context = useBaseFetch(ql, options);
-  let defaultData = options.defaultData;
+  let defaultData = options?.defaultData;
   let notDefault = useRef();
   useEffect(() => {
     let isFetch = notDefault.current || !defaultData || Object.keys(defaultData).length == 0;

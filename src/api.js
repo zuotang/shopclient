@@ -41,3 +41,13 @@ export async function setPassword(params) {
   let { data } = await axios.post(baseUrl + "/user/setpassword", { ...params });
   return data;
 }
+
+export async function getPhoto(params) {
+  let { data } = await axios.get(baseUrl + "/core/photo", { params });
+  return data;
+}
+
+export async function sendCode(params) {
+  let { data } = await axios.get(baseUrl + "/core/sendcode", { params });
+  return data;
+}

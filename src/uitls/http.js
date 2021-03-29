@@ -3,7 +3,7 @@ import axios from "axios";
 // 创建axios实例
 const instance = axios.create({
   //baseURL: process.env.BASE_API, // node环境的不同，对应不同的baseURL
-  timeout: 12000, // 请求的超时时间
+  timeout: 30000, // 请求的超时时间
   withCredentials: true,
 });
 

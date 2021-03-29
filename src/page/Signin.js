@@ -49,6 +49,16 @@ function Signin({ history }) {
           <Box flex="grow" paddingX={3} paddingY={3}>
             <Box justifyContent="end" marginStart={-1} marginEnd={-1} marginTop={-1} marginBottom={-1} display="flex" wrap>
               <Box paddingX={1} paddingY={1}>
+                <Button
+                  text="没有账号去注册"
+                  size="lg"
+                  color="transparent"
+                  onClick={(e) => {
+                    history.replace("/signup");
+                  }}
+                />
+              </Box>
+              <Box paddingX={1} paddingY={1}>
                 <Button text="登录" color="red" size="lg" type="submit" />
               </Box>
             </Box>

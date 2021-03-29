@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Box, Icon, Heading } from "gestalt";
+import { Box, Icon, Heading, IconButton } from "gestalt";
 import styled from "styled-components";
 import { WebCtx } from "./WebContext";
 import usePortal from "../hooks/usePortal";
-import { getImgSrc } from "../uitls/tools";
+import { clearAllCookie, getImgSrc } from "../uitls/tools";
 
 const HeaderBox = styled.div`
   position: fixed;
@@ -11,6 +11,9 @@ const HeaderBox = styled.div`
   width: 100%;
   background-color: white;
   z-index: 999;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
 `;
 
 function Header({ history }) {
@@ -30,6 +33,27 @@ function Header({ history }) {
                 {web.title}
               </Heading>
             </Box>
+          </Box>
+
+          <Box paddingX={2} display="flex">
+            <IconButton
+              accessibilityLabel="用户信息"
+              icon="person"
+              size="md"
+              onClick={(e) => {
+                clearAllCookie();
+                history.push("/userinfo");
+              }}
+            />
+            <IconButton
+              accessibilityLabel="退出"
+              icon="logout"
+              size="md"
+              onClick={(e) => {
+                clearAllCookie();
+                history.push("/signin");
+              }}
+            />
           </Box>
         </HeaderBox>
       </Portal>

@@ -1,63 +1,129 @@
 import { useEffect, useState, useContext } from "react";
-import { Box, Spinner, Button } from "gestalt";
+import { Box, Spinner, Modal, Heading, TextField, Button, Column } from "gestalt";
 import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
+import useUserInfo from "../hooks/useUserInfo";
 import banner from "../banner.png";
+import { useQuery } from "../uitls/query";
+import { getPhoto, sendCode } from "../api";
+
+function DownloadFile({ onDismiss, data }) {
+  return (
+    <Modal accessibilityModalLabel="View default padding and styling" heading="文件下载" onDismiss={onDismiss} size="sm">
+      <Box padding={8}>
+        <Button
+          text="下载"
+          color="red"
+          onClick={(e) => {
+            window.open(data.url);
+            onDismiss();
+          }}
+        />
+      </Box>
+    </Modal>
+  );
+}
+
+function SendCode({ onDismiss, data }) {
+  console.log(data);
+  let [value, setValue] = useState("");
+  let { fetch, loading, error } = useQuery(
+    sendCode,
+    { code: value },
+    {
+      onSuccess: (msg, data) => {
+        onDismiss();
+      },
+    }
+  );
+
+  return (
+    <Modal accessibilityModalLabel="View default padding and styling" heading="文件下载" onDismiss={onDismiss} size="sm">
+      <Box padding={8}>
+        <TextField id="code" onChange={({ value }) => setValue(value)} placeholder="输入验证码" errorMessage={error} value={value} autoComplete="off" />
+        <img src={data.img} />
+        <Button
+          text="提交"
+          color="red"
+          onClick={(e) => {
+            // window.open(data.url);
+            // onDismiss();
+            fetch();
+          }}
+        />
+      </Box>
+    </Modal>
+  );
+}
 
 function Home({ location, history }) {
   let params = new URLSearchParams(location.search);
   let web = useContext(WebCtx);
+  useUserInfo(history.push);
+  let [value, setValue] = useState("");
+  let [show, setShow] = useState(false);
+
+  let [showCode, setShowCode] = useState(false);
+  let { fetch, data, loading, error } = useQuery(getPhoto, { url: value });
+
+  useEffect(() => {
+    let res = data.data;
+    if (res) {
+      if (res.status == 0) {
+        setShow(true);
+      } else if (res.status == 1) {
+        setShowCode(true);
+      }
+    }
+  }, [data]);
+  console.log(data);
   return (
-    <Box minHeight="105vh" color="lightGray">
-      <Header />
-      <Box padding={1} display="flex" direction="column" alignItems="center" minHeight="85vh">
-        <Box maxWidth="800px" width="100%" marginTop={6}>
-          <Button
-            text="新用户注册"
-            onClick={(e) => {
-              history.push("/signup");
-            }}
-            color="red"
-          />
-          {web["googlelink"] && (
-            <Box marginTop={2}>
-              <Button text={"Google浏览器插件下载"} href={web["googlelink"]} target="blank" role={"link"} />
+    <Box minHeight="100vh" color="lightGray">
+      <Header history={history} />
+      <Box padding={1} display="flex" direction="column" alignItems="center" justifyContent="center" minHeight="85vh">
+        <Box maxWidth="800px" width="100%" display="flex">
+          <Column span={10}>
+            <TextField id="email" onChange={({ value }) => setValue(value)} placeholder="输入素材链接" errorMessage={error} value={value} type="url" autoComplete="off" />
+          </Column>
+          <Column span={2}>
+            <Box marginStart={1}>
+              <Button
+                disabled={loading}
+                text="解 析"
+                onClick={(e) => {
+                  fetch();
+                }}
+                color="red"
+              />
             </Box>
-          )}
-          {web["360link"] && (
-            <Box marginTop={2}>
-              <Button text="360浏览器插件下载" href={web["360link"]} target="blank" role={"link"} />
-            </Box>
+          </Column>
+          <Column span={1}>
+            <Spinner loading={loading} />
+          </Column>
+
+          {show && (
+            <DownloadFile
+              onDismiss={() => {
+                setShow(false);
+              }}
+              data={data.data}
+            />
           )}
 
-          <Box marginTop={2}>
-            <Button
-              text="用户信息"
-              onClick={(e) => {
-                history.push("/userinfo");
+          {showCode && (
+            <SendCode
+              onDismiss={() => {
+                setShowCode(false);
               }}
+              data={data.data}
             />
-          </Box>
-          <Box marginTop={2}>
-            <Button
-              text="找回密码"
-              onClick={(e) => {
-                history.push("/setpassword");
-              }}
-            />
-          </Box>
+          )}
+        </Box>
+        <Box>
           <Box height="168px"></Box>
           <Box maxWidth="368px" width="100%" marginStart="auto" marginEnd="auto">
             <img src={banner} width="100%" />
           </Box>
-          {/* <Box marginTop={2}>
-            <Button
-              text="续期激活"
-              onClick={(e) => {
-                history.push("/usecode");
-              }}
-            />
-          </Box> */}
         </Box>
       </Box>
     </Box>
