@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Spinner } from "gestalt";
+import { Box, Spinner, Button } from "gestalt";
 import ShopCard from "../components/ShopCard";
 
 import { useAutoQuery, useQuery } from "../uitls/query";
@@ -9,12 +9,22 @@ import { useScrollBottom, useResetScroll } from "../hooks/usePage";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import wxIcon from "../style/wx.png";
+import styled from "styled-components";
+import WxCodeModal from "../components/WxCodeModal";
+
+const ImgIcon = styled.img`
+  width: 28px;
+  height: 28px;
+  margin: -8px 0;
+`;
 
 //存入pageList
 let pData = null;
 function Home({ location, history }) {
   let params = new URLSearchParams(location.search);
   let [keyword, setKeyword] = useState("");
+  let [showCode, setShowCode] = useState(false);
   let { data, update, loading, fetchMore } = useAutoQuery(
     shops,
     { status: params.get("status") || 0, keyword, page_size: 20 },
@@ -50,7 +60,33 @@ function Home({ location, history }) {
         </Box>
         <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
       </Box>
+
       <Footer />
+
+      {showCode && (
+        <WxCodeModal
+          onDismiss={(e) => {
+            setShowCode(false);
+          }}
+        />
+      )}
+      <Box position="fixed" color="white" bottom left right display="flex" alignItems="center" justifyContent="center" height={80}>
+        <Button
+          size="lg"
+          onClick={(e) => {
+            setShowCode(true);
+          }}
+          text={
+            <>
+              <ImgIcon src={wxIcon} /> 下单客服
+            </>
+          }
+          color="blue"
+          inline
+        />
+      </Box>
+
+      <Box height={80}></Box>
     </Box>
   );
 }

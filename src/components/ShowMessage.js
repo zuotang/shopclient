@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Box, Toast } from "gestalt";
-function ToastExample({ message = { type: "", message: "" }, time = 2000 }) {
+function ToastExample({ message = { type: "", message: "", setMessage: null }, time = 2000 }) {
   let [showToast, setShowToast] = useState(false);
   useEffect(() => {
     if (message.message) {
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
+        if (message.setMessage) {
+          message.setMessage("");
+        }
       }, time);
     }
   }, [message.message]);
@@ -22,6 +25,7 @@ function ToastExample({ message = { type: "", message: "" }, time = 2000 }) {
       }}
       paddingX={1}
       position="fixed"
+      zIndex={{ index: () => 2 }}
     >
       {showToast && <Toast text={message.message || ""} />}
     </Box>

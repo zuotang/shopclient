@@ -53,6 +53,7 @@ export function useResetScroll(path, active) {
     }
     document.addEventListener("scroll", handleScroll);
     return () => {
+      document.body.style.minHeight = "auto";
       document.removeEventListener("scroll", handleScroll);
     };
   }, []);
