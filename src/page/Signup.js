@@ -13,7 +13,7 @@ function Signup({ history }) {
         alert(data.message);
         return;
       }
-      history.push(`/message?title=${encodeURI(data.message)}&content=${encodeURI("请到插件登录...")}`);
+      history.push(`/message?title=${encodeURI(data.message)}&content=${encodeURI("正在跳转登录...")}&to=${encodeURI("/signin")}`);
     },
   });
   const { register, handleSubmit, errors } = useForm();
@@ -41,15 +41,23 @@ function Signup({ history }) {
         </Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="code" label="兑换码" placeholder="输入兑换码" ref={register({ required: true })} />
+            <FormItem com={TextField} name="code" label="兑换码" placeholder="输入兑换码" ref={register({ required: true })} autoComplete={"off"} />
             {errors.code && <Text color="red">请输入兑换码</Text>}
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="name" label="账号" placeholder="请输入账号" ref={register({ required: true, minLength: 2, maxLength: 20 })} />
+            <FormItem com={TextField} name="name" label="账号" placeholder="请输入账号" ref={register({ required: true, minLength: 2, maxLength: 20 })} autoComplete={"off"} />
             {errors.name && <Text color="red">用户名需要在2-20字符内</Text>}
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="password" label="密码" type="password" placeholder="请输入密码" ref={register({ required: true, minLength: 6, maxLength: 40 })} />
+            <FormItem
+              com={TextField}
+              name="password"
+              label="密码"
+              type="password"
+              placeholder="请输入密码"
+              ref={register({ required: true, minLength: 6, maxLength: 40 })}
+              autoComplete={"off"}
+            />
             {errors.password && <Text color="red">密码需要在6-40字符内</Text>}
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
@@ -59,6 +67,7 @@ function Signup({ history }) {
               label="确认密码"
               type="password"
               placeholder="确认密码"
+              autoComplete={"off"}
               ref={register({ required: true, minLength: 6, maxLength: 40 })}
             />
             {errors.confirm_password && <Text color="red">密码需要在6-40字符内</Text>}

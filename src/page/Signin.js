@@ -8,7 +8,8 @@ import FormItem from "../components/FormItem";
 function Signin({ history }) {
   let { fetch, error, loading } = useQuery(signin, null, {
     onSuccess: () => {
-      history.goBack();
+      //history.goBack();
+      window.location.href = "/";
     },
   });
   const { register, handleSubmit, errors } = useForm();
