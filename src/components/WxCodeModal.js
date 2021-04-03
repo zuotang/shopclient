@@ -35,7 +35,7 @@ function HomeCodeModal({ onDismiss }) {
                   <Box margin={-4}>
                     <TextCopy id="copy_text">{web.wx}</TextCopy>
                     <Text color="white" align="center" size={"sm"}>
-                      微信账号
+                      复制微信账号
                     </Text>
                   </Box>
                 }
