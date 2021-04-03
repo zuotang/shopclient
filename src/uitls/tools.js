@@ -59,3 +59,30 @@ function getImageWidth(url) {
     };
   }
 }
+
+//复制节点中的文字
+export function copyTranslateResult(copyDOM, setMessage) {
+  if (copyDOM.innerHTML !== "") {
+    var range = document.createRange(); //创建一个range
+
+    window.getSelection().removeAllRanges(); //清楚页面中已有的selection
+
+    range.selectNode(copyDOM); // 选中需要复制的节点
+
+    window.getSelection().addRange(range); // 执行选中元素
+
+    var successful = document.execCommand("copy"); // 执行 copy 操作
+    console.log(successful);
+    if (successful) {
+      setMessage("复制成功！");
+    } else {
+      setMessage("复制失败，请手动复制！");
+    }
+
+    // 移除选中的元素
+
+    window.getSelection().removeAllRanges();
+  } else {
+    setMessage("没有内容");
+  }
+}

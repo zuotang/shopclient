@@ -1,17 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Layer, Modal, Box, Text, Button, IconButton } from "gestalt";
 import QRCodeImg from "../style/qrcode.png";
 import styled from "styled-components";
 import { WebCtx } from "./WebContext";
-import { getImgSrc } from "../uitls/tools";
+import ShowMessage from "../components/ShowMessage";
+import { getImgSrc, copyTranslateResult } from "../uitls/tools";
+const TextCopy = styled.div`
+  user-select: text;
+  color: var(--g-white);
+`;
 const QRCode = styled.img`
   width: 280px;
   height: 280px;
 `;
 function HomeCodeModal({ onDismiss }) {
+  let [message, setMessage] = useState("");
   let web = useContext(WebCtx);
   return (
     <Box position="relative">
+      <ShowMessage message={{ message, setMessage }} />
       <Layer>
         <Modal accessibilityModalLabel="View default padding and styling" onDismiss={onDismiss} size="sm">
           <Box padding={6} display="flex" direction="column" alignItems="center">
@@ -21,11 +28,12 @@ function HomeCodeModal({ onDismiss }) {
               <Button
                 color="blue"
                 size="lg"
+                onClick={(e) => {
+                  copyTranslateResult(document.querySelector("#copy_text"), setMessage);
+                }}
                 text={
                   <Box margin={-4}>
-                    <Text color="white" align="center" size={"lg"}>
-                      {web.wx}
-                    </Text>
+                    <TextCopy id="copy_text">{web.wx}</TextCopy>
                     <Text color="white" align="center" size={"sm"}>
                       微信账号
                     </Text>

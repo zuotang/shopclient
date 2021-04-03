@@ -3,6 +3,7 @@ import { Layer, Modal, Box, Text, Button, IconButton } from "gestalt";
 
 import styled from "styled-components";
 import ShowMessage from "../components/ShowMessage";
+import { copyTranslateResult } from "../uitls/tools";
 
 const TextCopy = styled.div`
   user-select: text;
@@ -10,34 +11,6 @@ const TextCopy = styled.div`
 `;
 function HomeCodeModal({ onDismiss, taobao }) {
   let [message, setMessage] = useState("");
-
-  function copyTranslateResult() {
-    const copyDOM = document.querySelector("#copy_text");
-
-    if (copyDOM.innerHTML !== "") {
-      var range = document.createRange(); //创建一个range
-
-      window.getSelection().removeAllRanges(); //清楚页面中已有的selection
-
-      range.selectNode(copyDOM); // 选中需要复制的节点
-
-      window.getSelection().addRange(range); // 执行选中元素
-
-      var successful = document.execCommand("copy"); // 执行 copy 操作
-      console.log(successful);
-      if (successful) {
-        setMessage("复制成功！");
-      } else {
-        setMessage("复制失败，请手动复制！");
-      }
-
-      // 移除选中的元素
-
-      window.getSelection().removeAllRanges();
-    } else {
-      setMessage("没有内容");
-    }
-  }
 
   return (
     <Box position="relative">
@@ -55,7 +28,7 @@ function HomeCodeModal({ onDismiss, taobao }) {
                 size="lg"
                 text={"复制淘口令"}
                 onClick={(e) => {
-                  copyTranslateResult();
+                  copyTranslateResult(document.querySelector("#copy_text"), setMessage);
                 }}
               />
             </Box>

@@ -19,6 +19,7 @@ function useBaseFetch(ql, { defaultData }) {
   let [data, setData] = useState(defaultData || {});
   let [loading, setLoading] = useState(false);
   let [error, setError] = useState(null);
+  let [oldParams, setOldParams] = useState({});
 
   let stateRef = useRef();
   useEffect(() => {
@@ -29,6 +30,7 @@ function useBaseFetch(ql, { defaultData }) {
   }, []);
 
   function fetch(params, { onError, onSuccess, updateQuery, title = "请求" }) {
+    setOldParams(params);
     // 初始数据
     setLoading(true);
     //setData({});
@@ -41,7 +43,7 @@ function useBaseFetch(ql, { defaultData }) {
         onSuccess && onSuccess({ type: "success", message: `${title}成功` }, res);
         setLoading(false);
         if (updateQuery) {
-          res = updateQuery(data, res, params);
+          res = updateQuery(data, res, oldParams, params);
         }
         setData(res);
       })

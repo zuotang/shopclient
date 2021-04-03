@@ -6,7 +6,7 @@ import { WebCtx } from "./WebContext";
 function Footer() {
   let web = useContext(WebCtx);
   return (
-    <Link href={web.recordlink} target="_blank">
+    <Link href={web.recordlink} target="blank">
       <Box padding={2}>
         <Text align="center" size="sm" color="gray">
           {web.recordnumber}
