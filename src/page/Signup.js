@@ -57,6 +57,7 @@ function Signup({ history }) {
               placeholder="请输入密码"
               ref={register({ required: true, minLength: 6, maxLength: 40 })}
               autoComplete={"off"}
+              onPaste={(e) => e.preventDefault()}
             />
             {errors.password && <Text color="red">密码需要在6-40字符内</Text>}
           </Box>
@@ -69,6 +70,7 @@ function Signup({ history }) {
               placeholder="确认密码"
               autoComplete={"off"}
               ref={register({ required: true, minLength: 6, maxLength: 40 })}
+              onPaste={(e) => e.preventDefault()}
             />
             {errors.confirm_password && <Text color="red">密码需要在6-40字符内</Text>}
           </Box>

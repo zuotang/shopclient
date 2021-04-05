@@ -51,6 +51,16 @@ function Signin({ history }) {
             <Box justifyContent="end" marginStart={-1} marginEnd={-1} marginTop={-1} marginBottom={-1} display="flex" wrap>
               <Box paddingX={1} paddingY={1}>
                 <Button
+                  text="忘记密码"
+                  size="lg"
+                  color="transparent"
+                  onClick={(e) => {
+                    history.push("/setpassword");
+                  }}
+                />
+              </Box>
+              <Box paddingX={1} paddingY={1}>
+                <Button
                   text="没有账号去注册"
                   size="lg"
                   color="transparent"
