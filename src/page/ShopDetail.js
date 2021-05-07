@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Heading, IconButton, Text, Button } from "gestalt";
+import { Box, Heading, IconButton, Text, Button, Spinner } from "gestalt";
 
 import { useAutoQuery } from "../uitls/query";
 import { shop } from "../api";
@@ -31,7 +31,7 @@ function ShopDetail(props) {
   let [wxShowCode, setWxShowCode] = useState(false);
   let [tbShow, setTbShow] = useState(false);
 
-  let { data } = useAutoQuery(
+  let { data, loading } = useAutoQuery(
     shop,
     { id: props.match.params.id },
     {
@@ -55,7 +55,7 @@ function ShopDetail(props) {
   }
   return (
     <Box minHeight="100%" padding={4} display="flex" direction="column" justifyContent="center">
-      <Box position="fixed" top left margin={4}>
+      <Box position="fixed" top left marginTop={4}>
         <IconButton
           icon="arrow-back"
           onClick={(e) => {
@@ -63,11 +63,12 @@ function ShopDetail(props) {
           }}
         />
       </Box>
-      <Box marginTop={2}>
-        <Text truncate color="gray" align="center">
+      <Box marginTop={2} marginStart={6} marginEnd={6}>
+        <Text color="gray" align="center" overflow="normal">
           {proxy ? data.proxy_name : data.name}
         </Text>
       </Box>
+      <Spinner show={loading} accessibilityLabel="加载中" size="sm" />
       <Box marginTop={2} display="flex" alignItems="center" justifyContent="center">
         <Text weight="bold">￥</Text> <Heading size="md">{proxy ? data.proxy_price : data.price}</Heading>
       </Box>
