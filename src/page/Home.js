@@ -7,7 +7,7 @@ import banner from "../banner.png";
 import { useQuery } from "../uitls/query";
 import { getPhoto, sendCode } from "../api";
 
-function DownloadFile({ onDismiss, data }) {
+function DownloadFile({ onDismiss, url }) {
   return (
     <Modal accessibilityModalLabel="View default padding and styling" heading="文件下载" onDismiss={onDismiss} size="sm">
       <Box padding={8}>
@@ -15,7 +15,7 @@ function DownloadFile({ onDismiss, data }) {
           text="下载"
           color="red"
           onClick={(e) => {
-            window.open(data.url);
+            window.open(url);
             onDismiss();
           }}
         />
@@ -24,8 +24,7 @@ function DownloadFile({ onDismiss, data }) {
   );
 }
 
-function SendCode({ onDismiss, data }) {
-  console.log(data);
+function SendCode({ onDismiss, onDownload, codeImg }) {
   let [value, setValue] = useState("");
   let { fetch, loading, error } = useQuery(
     sendCode,
@@ -33,6 +32,9 @@ function SendCode({ onDismiss, data }) {
     {
       onSuccess: (msg, data) => {
         onDismiss();
+        if (data.status == 0 && data.url) {
+          onDownload(data.url);
+        }
       },
     }
   );
@@ -41,10 +43,11 @@ function SendCode({ onDismiss, data }) {
     <Modal accessibilityModalLabel="View default padding and styling" heading="文件下载" onDismiss={onDismiss} size="sm">
       <Box padding={8}>
         <TextField id="code" onChange={({ value }) => setValue(value)} placeholder="输入验证码" errorMessage={error} value={value} autoComplete="off" />
-        <img src={data.img} />
+        <img src={codeImg} />
         <Button
           text="提交"
           color="red"
+          disabled={loading}
           onClick={(e) => {
             // window.open(data.url);
             // onDismiss();
@@ -64,6 +67,7 @@ function Home({ location, history }) {
   let [show, setShow] = useState(false);
 
   let [showCode, setShowCode] = useState(false);
+  let [downloadUrl, setDownloadUrl] = useState();
   let { fetch, data, loading, error } = useQuery(getPhoto, { url: value });
 
   useEffect(() => {
@@ -71,6 +75,7 @@ function Home({ location, history }) {
     if (res) {
       if (res.status == 0) {
         setShow(true);
+        setDownloadUrl(res.url);
       } else if (res.status == 1) {
         setShowCode(true);
       }
@@ -106,7 +111,7 @@ function Home({ location, history }) {
               onDismiss={() => {
                 setShow(false);
               }}
-              data={data.data}
+              url={downloadUrl}
             />
           )}
 
@@ -115,7 +120,11 @@ function Home({ location, history }) {
               onDismiss={() => {
                 setShowCode(false);
               }}
-              data={data.data}
+              codeImg={data.data.img}
+              onDownload={(url) => {
+                setDownloadUrl(url);
+                setShow(true);
+              }}
             />
           )}
         </Box>
