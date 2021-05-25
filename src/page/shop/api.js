@@ -1,4 +1,4 @@
-import axios from "../../uitls/http";
+import axios from "../../utils/http";
 import { baseUrl } from "../../api";
 
 export async function getShop(params) {

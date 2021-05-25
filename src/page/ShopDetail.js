@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Box, Heading, Text } from "gestalt";
 
-import { useAutoQuery } from "../uitls/query";
+import { useAutoQuery } from "../utils/query";
 import { shop } from "../api";
-import { getImgSrc } from "../uitls/tools";
+import { getImgSrc } from "../utils/tools";
 
 import { PhotoSlider, PhotoProvider, PhotoConsumer } from "react-photo-view";
 import "../style/photoview.css";
