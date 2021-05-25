@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react";
 import Link from "../Link";
 import Zoom from "react-reveal/Zoom";
-import { getImgSrc, getThumbSrc } from "../../uitls/tools";
+import { getImgSrc, getThumbSrc } from "../../utils/tools";
 import classNames from "classnames";
 
 const VideoLink = forwardRef(({ data, children, ...other }, ref) => {

@@ -3,7 +3,7 @@ import { Layer, Modal, Box, Text, Button, IconButton } from "gestalt";
 
 import styled from "styled-components";
 import ShowMessage from "../components/ShowMessage";
-import { copyTranslateResult } from "../uitls/tools";
+import { copyTranslateResult } from "../utils/tools";
 
 const TextCopy = styled.div`
   user-select: text;

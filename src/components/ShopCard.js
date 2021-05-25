@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Image, Text, Heading } from "gestalt";
-import { getThumbSrc } from "../uitls/tools";
+import { getThumbSrc } from "../utils/tools";
 import { Link } from "react-router-dom";
 
 function ShopCard({ data, proxy }) {

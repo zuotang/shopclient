@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Spinner, Button } from "gestalt";
 import ShopCard from "../components/ShopCard";
 
-import { useAutoQuery, useQuery } from "../uitls/query";
+import { useAutoQuery, useQuery } from "../utils/query";
 import { shops } from "../api";
 
 import { useScrollBottom, useResetScroll } from "../hooks/usePage";
