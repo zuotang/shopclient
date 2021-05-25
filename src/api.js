@@ -1,4 +1,4 @@
-import axios from "./uitls/http";
+import axios from "./utils/http";
 export const baseUrl = process.env.NODE_ENV == "development" ? "/api" : ""; //http://www.storm-money.com
 //登录
 export async function signin(params) {

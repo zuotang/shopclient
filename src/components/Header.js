@@ -3,7 +3,7 @@ import { Box, Icon, Heading } from "gestalt";
 import styled from "styled-components";
 import { WebCtx } from "./WebContext";
 import usePortal from "../hooks/usePortal";
-import { getImgSrc } from "../uitls/tools";
+import { getImgSrc } from "../utils/tools";
 
 const HeaderBox = styled.div`
   position: fixed;

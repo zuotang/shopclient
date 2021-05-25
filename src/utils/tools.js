@@ -59,3 +59,19 @@ function getImageWidth(url) {
     };
   }
 }
+
+export function goBack(history) {
+  if (!document.referrer) {
+    history.push("/");
+    return;
+  }
+
+  let pUrl = new URL(document.referrer);
+  if (pUrl.hostname != document.location.hostname) {
+    history.push("/");
+  } else if (document.referrer == document.location.href) {
+    history.push("/");
+  } else {
+    history.goBack();
+  }
+}

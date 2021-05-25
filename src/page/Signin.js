@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, TextField, Callout, Button, Spinner, IconButton } from "gestalt";
-import { useQuery } from "../uitls/query";
+import { useQuery } from "../utils/query";
 import { signin } from "../api";
 import { useForm } from "react-hook-form";
 import FormItem from "../components/FormItem";
@@ -8,7 +8,8 @@ import FormItem from "../components/FormItem";
 function Signin({ history }) {
   let { fetch, error, loading } = useQuery(signin, null, {
     onSuccess: () => {
-      history.goBack();
+      //history.goBack();
+      window.location.href = "/";
     },
   });
   const { register, handleSubmit, errors } = useForm();
@@ -48,6 +49,26 @@ function Signin({ history }) {
           <Spinner show={loading} accessibilityLabel="登录中" size="sm" />
           <Box flex="grow" paddingX={3} paddingY={3}>
             <Box justifyContent="end" marginStart={-1} marginEnd={-1} marginTop={-1} marginBottom={-1} display="flex" wrap>
+              <Box paddingX={1} paddingY={1}>
+                <Button
+                  text="忘记密码"
+                  size="lg"
+                  color="transparent"
+                  onClick={(e) => {
+                    history.push("/setpassword");
+                  }}
+                />
+              </Box>
+              <Box paddingX={1} paddingY={1}>
+                <Button
+                  text="没有账号去注册"
+                  size="lg"
+                  color="transparent"
+                  onClick={(e) => {
+                    history.replace("/signup");
+                  }}
+                />
+              </Box>
               <Box paddingX={1} paddingY={1}>
                 <Button text="登录" color="red" size="lg" type="submit" />
               </Box>

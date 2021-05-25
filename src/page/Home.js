@@ -2,11 +2,14 @@ import { useEffect, useState, useContext } from "react";
 import { Box, Spinner, Button } from "gestalt";
 import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
+import useUserInfo from "../hooks/useUserInfo";
 import banner from "../banner.png";
 
 function Home({ location, history }) {
   let params = new URLSearchParams(location.search);
   let web = useContext(WebCtx);
+  let { data: userInfo } = useUserInfo();
+  console.log(userInfo);
   return (
     <Box minHeight="105vh" color="lightGray">
       <Header />
@@ -46,6 +49,16 @@ function Home({ location, history }) {
               }}
             />
           </Box>
+          {userInfo.name && (
+            <Box marginTop={2}>
+              <Button
+                text="退出登录"
+                onClick={(e) => {
+                  history.push("/signin");
+                }}
+              />
+            </Box>
+          )}
           <Box height="168px"></Box>
           <Box maxWidth="368px" width="100%" marginStart="auto" marginEnd="auto">
             <img src={banner} width="100%" />

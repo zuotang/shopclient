@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useAutoQuery, useQuery } from "../../uitls/query";
+import { useAutoQuery, useQuery } from "../../utils/query";
 import { shops, delShop } from "./api";
 import { Table, Text, Image, Mask, Box, IconButton, SearchField, Spinner } from "gestalt";
 import { Link } from "react-router-dom";
-import { getImgSrc } from "../../uitls/tools";
+import { getImgSrc } from "../../utils/tools";
 import Page from "../../components/Page";
 function List(props) {
   let params = new URLSearchParams(props.location.search);

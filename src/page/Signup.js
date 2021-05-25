@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, TextField, Callout, Button, Spinner, Text, IconButton } from "gestalt";
-import { useQuery } from "../uitls/query";
+import { useQuery } from "../utils/query";
 import { signup } from "../api";
 import { useForm } from "react-hook-form";
 import FormItem from "../components/FormItem";
@@ -41,15 +41,24 @@ function Signup({ history }) {
         </Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="code" label="兑换码" placeholder="输入兑换码" ref={register({ required: true })} />
+            <FormItem com={TextField} name="code" label="兑换码" placeholder="输入兑换码" ref={register({ required: true })} autoComplete={"off"} />
             {errors.code && <Text color="red">请输入兑换码</Text>}
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="name" label="账号" placeholder="请输入账号" ref={register({ required: true, minLength: 2, maxLength: 20 })} />
+            <FormItem com={TextField} name="name" label="账号" placeholder="请输入账号" ref={register({ required: true, minLength: 2, maxLength: 20 })} autoComplete={"off"} />
             {errors.name && <Text color="red">用户名需要在2-20字符内</Text>}
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
-            <FormItem com={TextField} name="password" label="密码" type="password" placeholder="请输入密码" ref={register({ required: true, minLength: 6, maxLength: 40 })} />
+            <FormItem
+              com={TextField}
+              name="password"
+              label="密码"
+              type="password"
+              placeholder="请输入密码"
+              ref={register({ required: true, minLength: 6, maxLength: 40 })}
+              autoComplete={"off"}
+              onPaste={(e) => e.preventDefault()}
+            />
             {errors.password && <Text color="red">密码需要在6-40字符内</Text>}
           </Box>
           <Box flex="grow" paddingX={3} paddingY={3}>
@@ -59,7 +68,9 @@ function Signup({ history }) {
               label="确认密码"
               type="password"
               placeholder="确认密码"
+              autoComplete={"off"}
               ref={register({ required: true, minLength: 6, maxLength: 40 })}
+              onPaste={(e) => e.preventDefault()}
             />
             {errors.confirm_password && <Text color="red">密码需要在6-40字符内</Text>}
           </Box>
@@ -67,6 +78,16 @@ function Signup({ history }) {
           <Spinner show={loading} accessibilityLabel="登录中" size="sm" />
           <Box flex="grow" paddingX={3} paddingY={3}>
             <Box justifyContent="end" marginStart={-1} marginEnd={-1} marginTop={-1} marginBottom={-1} display="flex" wrap>
+              <Box paddingX={1} paddingY={1}>
+                <Button
+                  text="已有账号去登录"
+                  size="lg"
+                  color="transparent"
+                  onClick={(e) => {
+                    history.replace("/signin");
+                  }}
+                />
+              </Box>
               <Box paddingX={1} paddingY={1}>
                 <Button text="注册" color="red" size="lg" type="submit" />
               </Box>
