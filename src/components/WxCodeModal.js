@@ -4,7 +4,7 @@ import QRCodeImg from "../style/qrcode.png";
 import styled from "styled-components";
 import { WebCtx } from "./WebContext";
 import ShowMessage from "../components/ShowMessage";
-import { getImgSrc, copyTranslateResult } from "../uitls/tools";
+import { getImgSrc, copyTranslateResult } from "../utils/tools";
 const TextCopy = styled.div`
   user-select: text;
   color: var(--g-white);

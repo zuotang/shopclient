@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAutoQuery } from "../uitls/query";
+import { useAutoQuery } from "../utils/query";
 import { userInfo } from "../api";
 
 function useUserInfo(push) {

@@ -5,11 +5,11 @@ import System from "../page/system/System";
 import ShopDetail from "../page/ShopDetail";
 import Home from "../page/Home";
 import Transition from "../components/Transition";
-import { useAutoQuery } from "../uitls/query";
+import { useAutoQuery } from "../utils/query";
 import { WebCtx } from "../components/WebContext";
 import { getWebConfig } from "../api";
 import { Helmet } from "react-helmet";
-import { getImgSrc } from "../uitls/tools";
+import { getImgSrc } from "../utils/tools";
 
 function IndexPage(props) {
   let { data, loading } = useAutoQuery(getWebConfig);
