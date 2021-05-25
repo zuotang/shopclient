@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Box, Heading } from "gestalt";
 import "react-photoswipe/lib/photoswipe.css";
 import { PhotoSwipe } from "react-photoswipe";
-import { useAutoQuery } from "../uitls/query";
+import { useAutoQuery } from "../utils/query";
 import { shop } from "../api";
-import { getImgSrc } from "../uitls/tools";
+import { getImgSrc } from "../utils/tools";
 
 function ShopDetail(props) {
   let [items, setItems] = useState([]);

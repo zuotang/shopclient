@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
 import useUserInfo from "../hooks/useUserInfo";
 import banner from "../banner.png";
-import { useQuery } from "../uitls/query";
+import { useQuery } from "../utils/query";
 import { getPhoto, sendCode } from "../api";
 
 function DownloadFile({ onDismiss, url }) {

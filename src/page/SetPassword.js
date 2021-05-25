@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, TextField, Callout, Button, Spinner, IconButton } from "gestalt";
-import { useQuery } from "../uitls/query";
+import { useQuery } from "../utils/query";
 import { setPassword } from "../api";
 import { useForm } from "react-hook-form";
 import FormItem from "../components/FormItem";

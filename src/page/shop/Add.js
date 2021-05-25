@@ -4,7 +4,7 @@ import FormItem from "../../components/FormItem";
 import FileUpload from "../../components/FileUpload";
 import { useForm, useFieldArray } from "react-hook-form";
 import { addShop, editShop, getShop, reShop } from "./api";
-import { useQuery, useAutoQuery } from "../../uitls/query";
+import { useQuery, useAutoQuery } from "../../utils/query";
 import FormAttr from "../../components/FormAttr";
 import ShowMessage from "../../components/ShowMessage";
 function Add(props) {
