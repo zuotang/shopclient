@@ -3,8 +3,12 @@ import { Box, Heading, Button, IconButton } from "gestalt";
 import useUserInfo from "../hooks/useUserInfo";
 import dayjs from "dayjs";
 import { goBack } from "../utils/tools";
-var utc = require("dayjs/plugin/utc");
+import "dayjs/locale/zh-cn";
+import utc from "dayjs/plugin/utc";
+import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(utc);
+dayjs.extend(relativeTime);
+dayjs.locale("zh-cn");
 
 function UserInfo({ history }) {
   let { data } = useUserInfo(history.push);
@@ -28,7 +32,7 @@ function UserInfo({ history }) {
           用户账号：{data.name}
         </Box>
         <Box column={12} padding={3}>
-          到期时间：{dayjs.utc(data.duedate).local().format("YYYY-MM-DD HH:mm:ss")}
+          到期时间：{data.duedate && dayjs.utc(data.duedate).local().fromNow().replace("100 年内", "终身")}
         </Box>
 
         <Box flex="grow" paddingX={3} paddingY={3}>

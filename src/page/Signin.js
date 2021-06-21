@@ -26,7 +26,7 @@ function Signin({ history }) {
               icon="arrow-back"
               iconColor="red"
               onClick={(e) => {
-                history.goBack();
+                history.push("/");
               }}
             />
             <Heading size="sm" accessibilityLevel={2}>

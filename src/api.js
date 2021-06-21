@@ -16,6 +16,11 @@ export async function usecode(params) {
   return data;
 }
 
+export async function searchcode(params) {
+  let { data } = await axios.get(baseUrl + "/user/searchcode", { params });
+  return data;
+}
+
 //获取用户消息
 export async function userInfo(params) {
   let { data } = await axios.get(baseUrl + "/user/info", { ...params });

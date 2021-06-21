@@ -41,6 +41,15 @@ function Home({ location, history }) {
               }}
             />
           </Box>
+
+          {/* <Box marginTop={2}>
+            <Button
+              text="兑换码查询"
+              onClick={(e) => {
+                history.push("/codeinfo");
+              }}
+            />
+          </Box> */}
           <Box marginTop={2}>
             <Button
               text="找回密码"

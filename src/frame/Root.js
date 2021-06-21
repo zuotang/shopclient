@@ -5,6 +5,7 @@ import UseCode from "../page/UseCode";
 import Message from "../page/Message";
 import UserInfo from "../page/UserInfo";
 import SetPassword from "../page/SetPassword";
+import SearchCode from "../page/SearchCode";
 import { Route, Switch } from "react-router-dom";
 
 function Root(props) {
@@ -16,6 +17,7 @@ function Root(props) {
       <Route path="/userinfo" component={UserInfo} />
       <Route path="/setpassword" component={SetPassword} />
       <Route path="/Message" component={Message} />
+      <Route path="/codeinfo" component={SearchCode} />
       <Route path="/" component={Frame} />
       {/* <Route path="/" component={Frame} /> */}
     </Switch>
