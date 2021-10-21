@@ -2,6 +2,7 @@ import Frame from "./Frame";
 import Signin from "../page/Signin";
 import Signup from "../page/Signup";
 import UseCode from "../page/UseCode";
+import UseCodeSelf from "../page/UseCodeSelf";
 import Message from "../page/Message";
 import UserInfo from "../page/UserInfo";
 import SetPassword from "../page/SetPassword";
@@ -11,6 +12,7 @@ function Root(props) {
   return (
     <Switch>
       <Route path="/usecode" component={UseCode} />
+      <Route path="/usecodeself" component={UseCodeSelf} />
       <Route path="/signin" component={Signin} />
       <Route path="/signup" component={Signup} />
       <Route path="/userinfo" component={UserInfo} />

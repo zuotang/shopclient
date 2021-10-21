@@ -62,7 +62,7 @@ function SendCode({ onDismiss, onDownload, codeImg }) {
 function Home({ location, history }) {
   let params = new URLSearchParams(location.search);
   let web = useContext(WebCtx);
-  useUserInfo(history.push);
+  let { data: userInfo }=useUserInfo(history.push);
   let [value, setValue] = useState("");
   let [show, setShow] = useState(false);
 
@@ -71,7 +71,7 @@ function Home({ location, history }) {
   let { fetch, data, loading, error } = useQuery(getPhoto, { url: value });
 
   useEffect(() => {
-    let res = data.data;
+    let res = data; 
     if (res) {
       if (res.status == 0) {
         setShow(true);
@@ -81,7 +81,6 @@ function Home({ location, history }) {
       }
     }
   }, [data]);
-  console.log(data);
   return (
     <Box minHeight="100vh" color="lightGray">
       <Header history={history} />
@@ -128,12 +127,26 @@ function Home({ location, history }) {
             />
           )}
         </Box>
+        <Box height="168px"></Box>
+        <Box marginTop={2}>
+          {userInfo.name && (
+            <Box marginTop={2}>
+            <Button
+              text="续期激活"
+              onClick={(e) => {
+                history.push("/usecodeself");
+              }}
+            />
+          </Box> 
+          )}
+           </Box>
+{/*           
         <Box>
           <Box height="168px"></Box>
           <Box maxWidth="368px" width="100%" marginStart="auto" marginEnd="auto">
             <img src={banner} width="100%" />
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );

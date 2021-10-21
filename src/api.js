@@ -15,6 +15,10 @@ export async function usecode(params) {
   let { data } = await axios.post(baseUrl + "/user/usecode", { ...params });
   return data;
 }
+export async function usecodeself(params) {
+  let { data } = await axios.post(baseUrl + "/user/usecodeself", { ...params });
+  return data;
+}
 
 //获取用户消息
 export async function userInfo(params) {
