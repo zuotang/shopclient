@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Box, Spinner, Modal, Heading, TextField, Button, Column } from "gestalt";
+import { Box, Spinner, Modal, Heading, TextField, Button, Column,Upsell,Icon } from "gestalt";
 import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
 import useUserInfo from "../hooks/useUserInfo";
@@ -41,7 +41,7 @@ function SendCode({ onDismiss, onDownload, codeImg }) {
 
   return (
     <Modal accessibilityModalLabel="View default padding and styling" heading="文件下载" onDismiss={onDismiss} size="sm">
-      <Box padding={8}>
+      <Box padding={8} >
         <TextField id="code" onChange={({ value }) => setValue(value)} placeholder="输入验证码" errorMessage={error} value={value} autoComplete="off" />
         <img src={codeImg} />
         <Button
@@ -85,6 +85,15 @@ function Home({ location, history }) {
     <Box minHeight="100vh" color="lightGray">
       <Header history={history} />
       <Box padding={1} display="flex" direction="column" alignItems="center" justifyContent="center" minHeight="85vh">
+        <Box marginBottom={10} color="white" rounding={3}>
+        <Upsell
+    message="售后交流福利群" 
+    title="797402346" 
+    imageData={{
+      component: <Icon icon="send" accessibilityLabel="" color="darkGray" size={32} />,
+    }}
+  />
+           </Box>
         <Box maxWidth="800px" width="100%" display="flex">
           <Column span={10}>
             <TextField id="email" onChange={({ value }) => setValue(value)} placeholder="输入素材链接" errorMessage={error} value={value} type="url" autoComplete="off" />
@@ -131,13 +140,25 @@ function Home({ location, history }) {
         <Box marginTop={2}>
           {userInfo.name && (
             <Box marginTop={2}>
-            <Button
-              text="续期激活"
-              onClick={(e) => {
-                history.push("/usecodeself");
-              }}
-            />
-          </Box> 
+            <Box marginTop={2}>
+              <Button
+              color="red"
+                text="续期激活"
+                onClick={(e) => {
+                  history.push("/usecodeself");
+                }}
+              />
+            </Box> 
+            <Box marginTop={2}>
+              <Button
+              color="blue"
+                text="前往购买"
+                target="blank"
+                href="https://www.houfaka.com/links/1D939000BDD7C8F3"
+                role="link"
+              />
+            </Box> 
+          </Box>
           )}
            </Box>
 {/*           
