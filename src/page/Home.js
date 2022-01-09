@@ -93,6 +93,7 @@ function Home({ location, history }) {
       component: <Icon icon="send" accessibilityLabel="" color="darkGray" size={32} />,
     }}
   />
+     
            </Box>
         <Box maxWidth="800px" width="100%" display="flex">
           <Column span={10}>
@@ -136,7 +137,14 @@ function Home({ location, history }) {
             />
           )}
         </Box>
+        <Box marginTop={10} color="white" rounding={3}>
+        <Upsell
+          title="订单全五星【带图 + 带字】好评，赠送10次下载！每人限一次"  
+          message="评价后联系微信客服：chengxin091600" 
+        />
+        </Box>
         <Box height="168px"></Box>
+        
         <Box marginTop={2}>
           {userInfo.name && (
             <Box marginTop={2}>
