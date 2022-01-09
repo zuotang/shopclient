@@ -139,8 +139,8 @@ function Home({ location, history }) {
         </Box>
         <Box marginTop={10} color="white" rounding={3}>
         <Upsell
-          title="订单全五星【带图 + 带字】好评，赠送10次下载！每人限一次"  
-          message="评价后联系微信客服：chengxin091600" 
+          title="为了感谢您的订单全五星【带图 + 带字】好评，这边赠送了您10次下载！"  
+          message="请进福利群797402346 联系群主：小老虎 领取！" 
         />
         </Box>
         <Box height="168px"></Box>
