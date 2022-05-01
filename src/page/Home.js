@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Box, Spinner, Modal, Heading, TextField, Button, Column,Upsell,Icon } from "gestalt";
+import { Box, Spinner, Modal, Heading, TextField, Button, Column,Upsell,Icon,Card,Text } from "gestalt";
 import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
 import useUserInfo from "../hooks/useUserInfo";
@@ -137,13 +137,35 @@ function Home({ location, history }) {
             />
           )}
         </Box>
-        <Box marginTop={10} color="white" rounding={3}>
-        <Upsell
-          title="为了感谢您的订单全五星【带图 + 带字】好评，这边赠送了您10次下载！"  
-          message="请进福利群797402346 联系群主：小老虎 领取！" 
-        />
-        </Box>
-        <Box height="168px"></Box>
+        <Box marginTop={10} padding={5}>
+       
+          <Text>为了感谢您的订单全五星【带图 + 带字】好评，这边赠送了您10次下载！</Text>
+          <Text>请进福利群797402346 联系群主：小老虎 领取！</Text>
+        </Box> 
+        <Box marginTop={1}   display="flex" alignItems="center" >
+          <Column >
+            <Text>现已支持</Text>
+          </Column>
+          <Column>
+            <Button
+            
+            color="white"
+                text="享设计"
+               
+                />
+          </Column>
+
+          <Column>
+            <Button
+                color="white"
+                text="南门网"
+                href="http://dcpsd.com/"
+                role="link"
+                target="blank"
+                />
+          </Column>
+        </Box> 
+        <Box height="20px"></Box>
         
         <Box marginTop={2}>
           {userInfo.name && (
@@ -151,6 +173,7 @@ function Home({ location, history }) {
             <Box marginTop={2}>
               <Button
               color="red"
+              size="lg"
                 text="续期激活"
                 onClick={(e) => {
                   history.push("/usecodeself");
@@ -159,6 +182,7 @@ function Home({ location, history }) {
             </Box> 
             <Box marginTop={2}>
               <Button
+              size="lg"
               color="blue"
                 text="前往购买"
                 target="blank"
