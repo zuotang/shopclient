@@ -159,7 +159,7 @@ function Home({ location, history }) {
             <Button
                 color="white"
                 text="南门网"
-                href="http://dcpsd.com/"
+                href="http://www.dcpsd.com/?s=l"
                 role="link"
                 target="blank"
                 />
