@@ -1,12 +1,21 @@
 import { useEffect, useState, useContext } from "react";
-import { Box, Spinner, Modal, Heading, TextField, Button, Column,Upsell,Icon,Card,Text } from "gestalt";
+import { Box, Spinner, Modal, Heading, TextField, Button, Column,Upsell,Icon,RadioButton,Flex,Text,Card } from "gestalt";
 import Header from "../components/Header";
 import { WebCtx } from "../components/WebContext";
 import useUserInfo from "../hooks/useUserInfo";
 import banner from "../banner.png";
 import { useQuery } from "../utils/query";
 import { getPhoto, sendCode } from "../api";
+import styled from "styled-components";
 
+const TypeList=styled.div`
+background-color: white;
+border-radius: 20px;
+padding: 10px 10px;
+transform: translateY(-30%);
+margin: 0 10px;
+transition: width 2s;
+`
 function DownloadFile({ onDismiss, url }) {
   return (
     <Modal accessibilityModalLabel="View default padding and styling" heading="文件下载" onDismiss={onDismiss} size="sm">
@@ -65,10 +74,11 @@ function Home({ location, history }) {
   let { data: userInfo }=useUserInfo(history.push);
   let [value, setValue] = useState("");
   let [show, setShow] = useState(false);
+  let [format, setFormat] = useState("jpg");
 
   let [showCode, setShowCode] = useState(false);
   let [downloadUrl, setDownloadUrl] = useState();
-  let { fetch, data, loading, error } = useQuery(getPhoto, { url: value });
+  let { fetch, data, loading, error } = useQuery(getPhoto, { url: value,format:format });
 
   useEffect(() => {
     let res = data; 
@@ -99,6 +109,36 @@ function Home({ location, history }) {
           <Column span={10}>
             <TextField id="email" onChange={({ value }) => setValue(value)} placeholder="输入素材链接" errorMessage={error} value={value} type="url" autoComplete="off" />
           </Column>
+
+          {value.includes('818ps.com') &&  <TypeList>
+            <Flex direction="column" gap={2} >
+              <RadioButton
+                checked={format === 'png'}
+                id="favoriteDogA11y"
+                label="png"
+                name="format"
+                onChange={() => setFormat('png')}
+                value="png"
+              />
+              <RadioButton
+                checked={format === 'jpg'}
+                id="typeCatA11y"
+                label="jpg"
+                name="format"
+                onChange={() => setFormat('jpg')}
+                value="jpg"
+              />
+              <RadioButton
+                checked={format === 'pdf'}
+                id="typePlantsA11y"
+                label="pdf"
+                name="format"
+                onChange={() => setFormat('pdf')}
+                value="pdf"
+              />
+            </Flex>
+          </TypeList>}
+
           <Column span={2}>
             <Box marginStart={1}>
               <Button
@@ -144,13 +184,13 @@ function Home({ location, history }) {
         </Box> 
         <Box marginTop={1}   display="flex" alignItems="center" >
           <Column >
-            <Text>现已支持</Text>
+            <Text>支持解析</Text>
           </Column>
           <Column>
             <Button
             
             color="white"
-                text="享设计"
+                text="图怪兽"
                
                 />
           </Column>
